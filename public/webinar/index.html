@@ -5,23 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fashion Brand as a System — Free Webinar | Creative Sample Studio</title>
 <meta name="description" content="A free live webinar for fashion founders on building a commercially sustainable brand. Live attendance is free; the recording is available separately.">
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2128389784386493');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2128389784386493&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -275,6 +258,20 @@ caret-color:var(--black);
 .recording-price strong{display:block; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:2.5rem; line-height:1; color:var(--navy); margin-bottom:14px;}
 .recording-note{font-size:0.78rem; margin-top:12px; color:#6B7280;}
 
+/* ---------- Cookie consent ---------- */
+.cookie-banner{
+position:fixed; left:18px; right:18px; bottom:18px; z-index:90;
+display:none; align-items:center; justify-content:space-between; gap:22px;
+max-width:920px; margin:0 auto; padding:16px 18px;
+background:var(--black); color:var(--white); border:1px solid rgba(255,255,255,.18);
+box-shadow:0 14px 40px rgba(0,0,0,.28); font-size:.78rem; line-height:1.5;
+}
+.cookie-banner.show{display:flex;}
+.cookie-copy{max-width:620px;}
+.cookie-actions{display:flex; flex-wrap:wrap; gap:9px; flex-shrink:0;}
+.cookie-actions button{padding:10px 14px; font-size:.68rem;}
+.cookie-actions .btn-outline{border-color:rgba(255,255,255,.65);}
+
 @media (max-width:900px){
 
 .hero{padding:60px 0 50px;}
@@ -289,6 +286,7 @@ caret-color:var(--black);
 footer .wrap{flex-direction:column; gap:10px; text-align:center;}
 .recording-card{grid-template-columns:1fr;}
 .recording-price{text-align:left;}
+.cookie-banner{align-items:flex-start; flex-direction:column;}
 }
 @media (max-width:560px){
 .nav{padding:12px 16px;}
@@ -307,6 +305,7 @@ section{padding:54px 0;}
 .final-cta h2{font-size:1.6rem;}
 .modal{padding:30px 22px;}
 footer{padding:28px 0;}
+.cookie-banner{left:10px; right:10px; bottom:10px;}
 }
 @media (prefers-reduced-motion: reduce){
 .ticker-track{animation:none;}
@@ -337,7 +336,7 @@ footer{padding:28px 0;}
 <div class="hero-meta">
 <div>
 <span class="eyebrow">Date &amp; time</span>
-<span data-webinar-date>Date and time to be announced</span>
+<span data-webinar-date>31 July 2026 · 12:00 PM New York / 5:00 PM London</span>
 </div>
 <div>
 <span class="eyebrow">Format</span>
@@ -547,7 +546,7 @@ footer{padding:28px 0;}
 <h2 style="margin-top:14px;">Reserve your place at "Fashion Brand as a System"</h2>
 <p style="opacity:0.75; font-size:0.9rem; margin-bottom:6px;">
 📅
- <span data-webinar-date>Date and time to be announced</span> &nbsp;·&nbsp; Live on Zoom</p>
+ <span data-webinar-date>31 July 2026 · 12:00 PM New York / 5:00 PM London</span> &nbsp;·&nbsp; Live on Zoom</p>
 <p>Leave your details to receive the Zoom link and the PDF guide — free, no obligation.</p>
 <button class="btn" onclick="openModal()">Reserve My Free Spot</button>
 </div>
@@ -568,7 +567,7 @@ footer{padding:28px 0;}
 <h3 id="registration-title">Register for the session</h3>
 <p class="sub">Leave your details to receive the Zoom link and the PDF guide "The CSS Launch Framework™".</p>
 <form id="registration-form" name="webinar-registration" novalidate>
-<input type="hidden" name="webinar_id" value="WEB-TBC-01">
+<input type="hidden" name="webinar_id" value="CSS-WEB-2026-07-31">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px;">
 <input type="hidden" name="utm_source">
 <input type="hidden" name="utm_medium">
@@ -599,6 +598,14 @@ footer{padding:28px 0;}
 <button type="button" onclick="closeSuccessPopup()" style="background:#262C9E; color:#FFFFFF; border:none; padding:14px 34px; font-family:'Inter',sans-serif; font-weight:700; letter-spacing:0.05em; font-size:0.86rem; text-transform:uppercase; cursor:pointer; border-radius:4px;">Close</button>
 </div>
 </div>
+
+<aside class="cookie-banner" id="cookie-banner" aria-label="Cookie preferences" role="region">
+<p class="cookie-copy">We use essential storage to remember your choice and optional analytics cookies to understand advertising performance. You can accept or reject optional cookies. Read our <a class="text-link" href="https://www.creativesamplestudio.co.uk/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+<div class="cookie-actions">
+<button class="btn btn-outline" type="button" data-cookie-reject>Reject optional</button>
+<button class="btn" type="button" data-cookie-accept>Accept optional</button>
+</div>
+</aside>
 
 <script src="config.js"></script>
 <script src="app.js"></script>

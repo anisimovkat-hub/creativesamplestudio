@@ -1,0 +1,9 @@
+name = "creativesamplestudio"
+compatibility_date = "2026-07-22"
+pages_build_output_dir = "public"
+
+[vars]
+BREVO_SENDER_EMAIL = "marketing@creativesamplestudio.co.uk"
+BREVO_SENDER_NAME = "Creative Sample Studio"
+WEBINAR_TITLE = "Fashion Brand as a System"
+WEBINAR_DATE_LABEL = "31 July 2026 at 12:00 PM New York / 5:00 PM London"

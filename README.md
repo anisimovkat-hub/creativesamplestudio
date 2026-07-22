@@ -1,64 +1,60 @@
-# CSS webinar landing
+# Creative Sample Studio
 
-Рабочая версия лендинга Creative Sample Studio для бесплатного вебинара **Fashion Brand as a System**.
+Cloudflare Pages project for Creative Sample Studio landing pages.
 
-## Что уже подготовлено
+## Current page
 
-- исходник восстановлен из RTF-файла TextEdit и превращён в обычный HTML;
-- семь встроенных изображений вынесены в `src/assets`;
-- убрана зависимость формы от Netlify Forms;
-- дата, идентификатор вебинара, цена записи и адрес оплаты вынесены в `src/config.js`;
-- добавлены UTM-метки, раздельное согласие на маркетинг и информация о платной записи;
-- добавлен автоматический выпуск статического сайта через GitHub Pages;
-- подготовлен Google Sheet `CSS Webinar Leads & Attendance Tracker` для регистраций, посещаемости и продаж.
+- Webinar: **Fashion Brand as a System**
+- URL path: `/webinar/`
+- Date: **31 July 2026, 12:00 PM New York / 5:00 PM London**
+- Live attendance: free
+- Recording: **$30** (checkout intentionally not enabled yet)
 
-## Перед публикацией
+The public site is built from `public`. Cloudflare Pages Functions in `functions` provide the protected server-side registration endpoint.
 
-В `src/config.js` нужно заполнить:
+## Registration flow
 
-```js
-window.CSS_WEBINAR_CONFIG = Object.freeze({
-  webinarId: "WEB-2026-XX-XX",
-  displayDate: "31 July 2026 · 4:00 PM BST",
-  registrationEndpoint: "https://...",
-  recordingPrice: 30,
-  recordingCurrency: "USD",
-  recordingCheckoutUrl: "https://buy.stripe.com/..."
-});
-```
+1. The landing submits to `POST /api/register` on the same Cloudflare domain.
+2. The server creates an approved Zoom registrant and receives a personal join link.
+3. It saves the lead and Zoom identifiers to Google Sheets.
+4. It adds the contact to the webinar list in Brevo and, only with optional consent, to the marketing list.
+5. Brevo sends the personal Zoom link from `marketing@creativesamplestudio.co.uk`.
+6. The Zoom attendance report can later update the same sheet by webinar ID and email, enabling separate attended and no-show campaigns.
 
-`registrationEndpoint` должен быть публичным HTTPS-адресом серверной интеграции. API-ключи Brevo и Zoom нельзя добавлять в `config.js`, HTML, GitHub Pages или историю Git.
+No API keys are stored in the repository or browser code.
 
-## Рекомендуемый поток регистрации
+## Cloudflare settings
 
-1. Человек заполняет форму на GitHub Pages.
-2. Серверная интеграция создаёт уникального Zoom-регистранта.
-3. Она добавляет/обновляет контакт в Brevo и сохраняет лид в Google Sheet.
-4. Brevo отправляет служебное письмо с персональной Zoom-ссылкой от `marketing@creativesamplestudio.co.uk`.
-5. После вебинара интеграция получает отчёт Zoom и отмечает в таблице `Attended` или `No-show`.
+Create the Pages project with Git integration:
 
-Для небольшого проекта серверной интеграцией может быть Google Apps Script или Cloudflare Worker. Для надёжной формы с понятной обработкой ошибок предпочтительнее небольшой Worker; Google Apps Script можно использовать для синхронизации таблицы и отчёта Zoom.
+- production branch: `main`
+- build command: leave empty
+- build output directory: `public`
+- root directory: `/`
+
+Add these encrypted secrets under **Settings → Variables and Secrets**:
+
+- `ZOOM_ACCOUNT_ID`
+- `ZOOM_CLIENT_ID`
+- `ZOOM_CLIENT_SECRET`
+- `ZOOM_MEETING_ID`
+- `BREVO_API_KEY`
+- `GOOGLE_SHEETS_WEBHOOK_URL`
+- `GOOGLE_SHEETS_WEBHOOK_SECRET`
+
+Optional numeric Brevo list IDs:
+
+- `BREVO_WEBINAR_LIST_ID`
+- `BREVO_MARKETING_LIST_ID`
+
+Non-secret sender and event labels are defined in `wrangler.toml`.
 
 ## Google Sheet
 
-Рабочая таблица: <https://docs.google.com/spreadsheets/d/1DdiTWrzdHRATq1YD9nEPyH_7GimJp3ITkoGK0RpCHRc/edit>
+[CSS Webinar Leads & Attendance Tracker](https://docs.google.com/spreadsheets/d/1DdiTWrzdHRATq1YD9nEPyH_7GimJp3ITkoGK0RpCHRc/edit)
 
-Вкладки:
+Suggested unique key: `webinar_id + email`. Store the personal Zoom URL and registrant ID in restricted columns; do not publish the sheet.
 
-- `Overview` — сводка по регистрациям, посещаемости и продажам;
-- `Leads` — одна строка на одного лида и один вебинар;
-- `Webinars` — отдельные события и их настройки;
-- `Lists` — допустимые статусы для выпадающих списков.
+## Consent and cookies
 
-Строка `EXAMPLE-DELETE` — тестовый пример и не входит в метрики.
-
-## Публикация
-
-После создания отдельного репозитория:
-
-1. загрузить этот каталог в ветку `main`;
-2. в Settings → Pages выбрать Source: GitHub Actions;
-3. дождаться завершения workflow `Deploy webinar landing to GitHub Pages`;
-4. при необходимости подключить поддомен, например `webinar.creativesamplestudio.co.uk`.
-
-Сайт публикуется из каталога `src`.
+Marketing consent is deliberately separate and unchecked. Webinar administration emails do not depend on marketing consent. Meta Pixel loads only after the visitor accepts optional cookies; rejecting optional cookies leaves registration fully available.

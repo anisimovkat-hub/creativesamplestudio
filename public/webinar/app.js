@@ -6,6 +6,57 @@
   const form = document.getElementById("registration-form");
   const status = document.querySelector("[data-form-status]");
   const submitButton = document.querySelector("[data-submit-button]");
+  const cookieBanner = document.getElementById("cookie-banner");
+  const consentStorageKey = "css_cookie_consent_v1";
+
+  function loadMetaPixel() {
+    if (!config.metaPixelId || typeof window.fbq === "function") return;
+
+    (function (f, b, e, v, n, t, s) {
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js"));
+
+    window.fbq("init", config.metaPixelId);
+    window.fbq("track", "PageView");
+  }
+
+  function setCookieConsent(value) {
+    try {
+      window.localStorage.setItem(consentStorageKey, value);
+    } catch (error) {
+      // The preference remains valid for this page view when storage is unavailable.
+    }
+    cookieBanner.classList.remove("show");
+    if (value === "accepted") loadMetaPixel();
+  }
+
+  let storedConsent = null;
+  try {
+    storedConsent = window.localStorage.getItem(consentStorageKey);
+  } catch (error) {
+    storedConsent = null;
+  }
+  if (storedConsent === "accepted") loadMetaPixel();
+  if (!storedConsent) cookieBanner.classList.add("show");
+
+  document.querySelector("[data-cookie-accept]").addEventListener("click", function () {
+    setCookieConsent("accepted");
+  });
+  document.querySelector("[data-cookie-reject]").addEventListener("click", function () {
+    setCookieConsent("rejected");
+  });
 
   window.openModal = function () {
     overlay.classList.add("open");
@@ -103,14 +154,15 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      if (!response.ok) throw new Error("Registration request failed");
+      const result = await response.json().catch(function () { return {}; });
+      if (!response.ok) throw new Error(result.error || "Registration request failed");
 
       form.reset();
       window.closeModal();
       document.getElementById("success-popup").style.display = "flex";
       if (typeof window.fbq === "function") window.fbq("track", "Lead");
     } catch (error) {
-      setStatus("We couldn’t complete your registration. Please try again or contact Creative Sample Studio.", "error");
+      setStatus(error.message || "We couldn’t complete your registration. Please try again or contact Creative Sample Studio.", "error");
     } finally {
       submitButton.disabled = false;
       submitButton.textContent = "Confirm My Free Spot";
