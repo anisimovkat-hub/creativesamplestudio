@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion Brand as a System — Free Webinar | Creative Sample Studio</title>
+<meta name="description" content="A free live webinar for fashion founders on building a commercially sustainable brand. Live attendance is free; the recording is available separately.">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2128389784386493');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2128389784386493&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#262C9E;
+--navy-deep:#1C2170;
+--cream:#F4F5F7;
+--cream-soft:#F4F5F7;
+--black:#111114;
+--white:#FFFFFF;
+--line: rgba(38,44,158,0.15);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+font-family:'Inter', sans-serif;
+background:var(--cream-soft);
+color:var(--black);
+line-height:1.7;
+-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{
+font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+text-transform:uppercase;
+letter-spacing:-0.01em;
+line-height:1.05;
+}
+h1{letter-spacing:-0.03em;}
+.eyebrow{
+font-family:'Inter',sans-serif;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:0.14em;
+font-size:0.72rem;
+}
+a{color:inherit; text-decoration:none;}
+img{display:block; max-width:100%;}
+.wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+
+/* ---------- Repeating CTA button ---------- */
+.btn{
+display:inline-flex; align-items:center; gap:10px;
+background:var(--cream); color:var(--navy);
+font-family:'Inter',sans-serif; font-weight:700;
+text-transform:uppercase; letter-spacing:0.06em;
+font-size:0.82rem;
+padding:16px 30px;
+border:none; border-radius:2px;
+cursor:pointer;
+transition:transform .18s ease, background .18s ease;
+}
+.btn:hover{transform:translateY(-2px); background:var(--white);}
+.btn-outline{
+background:transparent; color:var(--cream);
+border:1.5px solid var(--cream);
+}
+.btn-outline:hover{background:var(--cream); color:var(--navy);}
+.btn-dark{background:var(--navy); color:var(--cream);}
+.btn-dark:hover{background:var(--navy-deep); color:var(--white);}
+
+/* ---------- Header ---------- */
+header{
+position:sticky; top:0; z-index:40;
+background:var(--navy);
+border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+
+.nav-cta{font-size:0.72rem; padding:11px 20px;}
+
+/* ---------- Hero ---------- */
+.hero-photo-wrap{
+position:absolute; top:0; left:0; width:44%; height:100%;
+overflow:hidden; z-index:1;
+}
+.hero-photo{width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(100%) contrast(1.05);}
+
+.hero{
+background:var(--navy); color:var(--cream);
+position:relative; overflow:hidden;
+padding:90px 0 70px;
+}
+
+.hero-inner{position:relative; z-index:3; max-width:560px; }
+.free-tag{
+display:inline-flex; align-items:center; gap:8px;
+border:1px solid var(--cream); border-radius:999px;
+padding:6px 16px; margin-bottom:26px;
+}
+.free-tag .dot{width:7px; height:7px; border-radius:50%; background:var(--cream);}
+.hero h1{font-size:clamp(2.4rem, 5.8vw, 4rem); margin:0 0 22px; letter-spacing:-0.02em;}
+.hero h1 span{color:var(--white); opacity:0.38;}
+.hero p.lead{font-size:1.05rem; max-width:540px; opacity:0.88; margin-bottom:34px;}
+.hero-meta{
+display:flex; flex-wrap:wrap; gap:28px;
+margin:34px 0 38px; font-size:0.86rem;
+}
+.hero-meta div{display:flex; flex-direction:column; gap:4px;}
+.hero-meta .eyebrow{opacity:0.6;}
+.hero-cta-row{display:flex; flex-wrap:wrap; gap:16px; align-items:center;}
+.hero-sub-note{font-size:0.78rem; opacity:0.65; margin-top:14px;}
+
+/* ---------- Section shared ---------- */
+section{padding:84px 0;}
+.section-head{max-width:640px; margin-bottom:48px;}
+.section-head .eyebrow{color:var(--navy); margin-bottom:14px;}
+.section-head h2{font-size:clamp(1.6rem, 3.4vw, 2.3rem); color:var(--black);}
+
+/* ---------- About webinar ---------- */
+.about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start;}
+.about-grid p{margin-bottom:18px; font-size:1rem; color:#2c2c2c;}
+.stat-card{
+background:var(--navy); color:var(--white);
+padding:38px; border-radius:2px;
+border-left:4px solid var(--cream);
+}
+.stat-card .eyebrow{color:var(--cream); opacity:1; margin-bottom:12px;}
+.stat-card h3{font-size:1.3rem; color:var(--white); line-height:1.3; margin-bottom:16px;}
+.stat-card p{font-size:1rem; color:var(--cream); opacity:1; margin-top:0;}
+.stat-card .stat-footer{
+margin-top:26px; padding-top:20px; border-top:1px solid var(--line);
+font-size:0.86rem; color:var(--cream); opacity:0.95; font-weight:600;
+letter-spacing:0.02em;
+}
+
+/* ---------- Framework ticker ---------- */
+.ticker-band{
+background:var(--navy); color:var(--cream);
+padding:18px 0; overflow:hidden; white-space:nowrap;
+border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.ticker-track{display:inline-block; animation: scroll 28s linear infinite;}
+.ticker-track span{
+font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform:uppercase;
+font-size:0.95rem; letter-spacing:0.04em; margin:0 28px; opacity:0.85;
+}
+@keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* ---------- Pillars / topics ---------- */
+.pillars{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:#D8DCE8; border:1px solid #D8DCE8;}
+.pillar{background:var(--cream-soft); padding:34px 28px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;}
+.pillar .num{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:0.78rem; color:var(--navy); opacity:0.5;}
+.pillar h3{font-size:1.02rem; margin:18px 0 10px; color:var(--black);}
+.pillar p{font-size:0.86rem; color:#4a4a4a;}
+
+.topic-list{margin-top:54px; display:flex; flex-direction:column; gap:0;}
+.topic-row{
+display:grid; grid-template-columns:90px 1fr; gap:24px;
+padding:26px 0; border-top:1px solid #D8DCE8;
+}
+.topic-row:last-child{border-bottom:1px solid #D8DCE8;}
+.topic-row .eyebrow{color:#6B7280;}
+.topic-row h3{font-size:1.05rem; margin-bottom:8px;}
+.topic-row p{font-size:0.9rem; color:#4a4a4a; max-width:560px;}
+
+/* ---------- Speakers ---------- */
+.speakers-section{background:var(--navy); color:var(--cream);}
+.speakers-section .section-head .eyebrow{color:var(--cream); opacity:0.65;}
+.speakers-section .section-head h2{color:var(--cream);}
+.speaker-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:36px;}
+.speaker-card img{width:100%; aspect-ratio:4/5; object-fit:cover; filter:grayscale(100%) contrast(1.05);}
+.speaker-card{display:flex; flex-direction:column;}
+.speaker-name{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform:uppercase; font-size:1.05rem; margin-top:20px;}
+.speaker-role{font-size:0.8rem; opacity:0.7; margin:6px 0 14px; letter-spacing:0.02em;}
+.speaker-card p{font-size:0.86rem; opacity:0.88; line-height:1.55;}
+
+/* ---------- About CSS ---------- */
+.about-css{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+.about-css p{margin-bottom:16px; font-size:0.98rem; color:#2c2c2c;}
+.philosophy{
+margin-top:28px; padding:24px 26px; border-left:3px solid var(--navy);
+font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform:uppercase;
+font-size:1.02rem; line-height:1.4; color:var(--navy);
+}
+
+/* ---------- Trust logos ---------- */
+.trust{background:var(--cream); padding:64px 0;}
+.trust .eyebrow{color:var(--navy); margin-bottom:34px; text-align:center; display:block; font-size:0.8rem;}
+.trust-row{
+display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:30px 64px;
+}
+.trust-row span{
+font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform:uppercase;
+font-size:1.5rem; color:var(--navy); letter-spacing:0.01em; opacity:0.88;
+}
+
+/* ---------- Final CTA ---------- */
+.final-cta{
+background:var(--navy); color:var(--cream); text-align:center;
+padding:100px 0; position:relative; overflow:hidden;
+}
+.final-cta .wrap{position:relative; z-index:2;}
+.final-cta h2{font-size:clamp(1.8rem, 4.4vw, 2.8rem); max-width:680px; margin:0 auto 18px;}
+.final-cta p{opacity:0.85; max-width:480px; margin:0 auto 36px; font-size:0.98rem;}
+
+footer{background:var(--black); color:var(--cream); padding:40px 0; font-size:0.8rem; opacity:0.75;}
+footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+
+/* ---------- Modal ---------- */
+.modal-overlay{
+position:fixed; inset:0; background:rgba(5,8,40,0.72);
+display:none; align-items:center; justify-content:center;
+z-index:100; padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+background:var(--cream-soft); max-width:440px; width:100%;
+padding:40px 34px; position:relative; border-radius:2px;
+}
+.modal-close{
+position:absolute; top:16px; right:18px; background:none; border:none;
+font-size:1.3rem; cursor:pointer; color:var(--navy); line-height:1;
+}
+.modal h3{font-size:1.2rem; color:var(--black); margin-bottom:8px;}
+.modal p.sub{font-size:0.88rem; color:#4a4a4a; margin-bottom:24px;}
+.field{margin-bottom:16px;}
+.field label{display:block; font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:7px; color:#333;}
+.field input{
+width:100%; padding:12px 14px; border:1px solid #C8CDD8; border-radius:2px;
+font-family:'Inter',sans-serif; font-size:0.92rem;
+background:var(--white); color:var(--black); color-scheme:light;
+}
+.field input::placeholder{color:#9AA0AE;}
+.field input:focus{outline:2px solid var(--navy); outline-offset:1px;}
+/* Keep typed/autofilled text visible regardless of OS dark mode */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus{
+-webkit-text-fill-color:var(--black);
+-webkit-box-shadow:0 0 0 1000px var(--white) inset;
+caret-color:var(--black);
+}
+.modal .btn{width:100%; justify-content:center; margin-top:6px;}
+.modal-note{font-size:0.72rem; color:#6B7280; margin-top:14px; text-align:center; line-height:1.7;}
+.form-status{display:none; margin-top:14px; padding:12px 14px; font-size:0.8rem; line-height:1.5; border-radius:2px;}
+.form-status.show{display:block;}
+.form-status.error{background:#FBEAEA; color:#7D1616;}
+.form-status.info{background:#E9EBFA; color:var(--navy-deep);}
+.field-consent{margin-bottom:16px;}
+.consent-label{display:flex; gap:10px; align-items:flex-start; cursor:pointer;}
+.consent-label input[type="checkbox"]{margin-top:3px; flex-shrink:0; accent-color:var(--navy); width:15px; height:15px;}
+.consent-label span{font-size:0.78rem; color:#333; line-height:1.7;}
+.text-link{text-decoration:underline; text-underline-offset:3px;}
+
+/* ---------- Recording ---------- */
+.recording-section{background:var(--cream);}
+.recording-card{display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; background:var(--white); border:1px solid #D8DCE8; padding:38px;}
+.recording-card h2{font-size:clamp(1.45rem,3vw,2rem); margin:10px 0 14px;}
+.recording-card p{max-width:680px; color:#3e3e3e;}
+.recording-price{text-align:center; min-width:180px;}
+.recording-price strong{display:block; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:2.5rem; line-height:1; color:var(--navy); margin-bottom:14px;}
+.recording-note{font-size:0.78rem; margin-top:12px; color:#6B7280;}
+
+@media (max-width:900px){
+
+.hero{padding:60px 0 50px;}
+.hero-inner{margin-left:0 !important; max-width:100% !important;}
+.hero-photo-wrap{display:none;}
+.hero h1{font-size:2.2rem;}
+.hero-meta{flex-direction:column; gap:14px;}
+.about-grid, .about-css{grid-template-columns:1fr;}
+.pillars{grid-template-columns:1fr 1fr;}
+.speaker-grid{grid-template-columns:1fr 1fr;}
+.topic-row{grid-template-columns:1fr;}
+footer .wrap{flex-direction:column; gap:10px; text-align:center;}
+.recording-card{grid-template-columns:1fr;}
+.recording-price{text-align:left;}
+}
+@media (max-width:560px){
+.nav{padding:12px 16px;}
+
+.btn, .nav-cta{font-size:0.78rem; padding:13px 20px;}
+.hero{padding:48px 0 40px;}
+.hero h1{font-size:1.8rem; line-height:1.1;}
+.hero p.lead{font-size:0.94rem;}
+.hero-cta-row .btn{width:100%; justify-content:center;}
+.pillars{grid-template-columns:1fr;}
+.speaker-grid{grid-template-columns:1fr;}
+section{padding:54px 0;}
+.stat-card{padding:26px;}
+.trust-row span{font-size:1.1rem;}
+.final-cta{padding:64px 0;}
+.final-cta h2{font-size:1.6rem;}
+.modal{padding:30px 22px;}
+footer{padding:28px 0;}
+}
+@media (prefers-reduced-motion: reduce){
+.ticker-track{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="nav wrap">
+<span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:800; font-size:0.9rem; letter-spacing:0.08em; text-transform:uppercase; color:#F4F5F7; line-height:1.2;">Creative<br>Sample Studio</span>
+<button class="btn nav-cta" onclick="openModal()">Reserve My Free Spot</button>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+
+<div class="wrap hero-inner">
+<div class="free-tag">
+<span class="dot"></span>
+<span class="eyebrow">Free Online Webinar</span>
+</div>
+<h1>Fashion Brand<br>as a <span>System</span></h1>
+<p class="lead">Building a fashion brand takes more than a great collection. It takes a system. Join us to learn how the most commercially successful brands are built.</p>
+<p style="font-size:0.88rem; opacity:0.78; margin-top:-8px; margin-bottom:0;">60-minute Live Webinar &nbsp;·&nbsp; 45-minute presentation + 15-minute Live Q&amp;A</p>
+<div class="hero-meta">
+<div>
+<span class="eyebrow">Date &amp; time</span>
+<span data-webinar-date>Date and time to be announced</span>
+</div>
+<div>
+<span class="eyebrow">Format</span>
+<span>Live online · Zoom</span>
+</div>
+<div>
+<span class="eyebrow">Presented by</span>
+<span>Creative Sample Studio</span>
+</div>
+</div>
+<div class="hero-cta-row">
+<button class="btn" onclick="openModal()">Reserve My Free Spot</button>
+</div>
+<p class="hero-sub-note">Free Registration Bonus: The CSS Launch Framework™ Guide</p>
+</div>
+</section>
+
+<div style="overflow:hidden; line-height:0;">
+<img src="assets/image-01.jpg" alt="" style="width:100%; display:block; object-fit:cover; height:340px; filter:grayscale(100%) contrast(1.05);" loading="lazy">
+
+</div>
+
+<!-- ABOUT WEBINAR -->
+<section>
+<div class="wrap about-grid">
+<div>
+<p class="eyebrow" style="color:var(--navy); margin-bottom:16px;">About the webinar</p>
+<h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-bottom:22px;">Launching a brand is about far more than designing a collection.</h2>
+<p>Many founders spend months perfecting their product, only to discover that success depends on much more than great design. Brand positioning, commercial strategy, product development, production planning and market entry all have to work together — not in isolation — for a brand to be commercially sustainable.</p>
+<p>In this free session, you'll discover the strategic framework behind successful fashion brand launches, and why the strongest brands are built as systems. Drawing on real-world industry experience, we'll unpack the most common challenges founders face, the mistakes that quietly delay growth, and the key decisions that need to be made before investing in development and production.</p>
+<button class="btn btn-dark" onclick="openModal()" style="margin-top:8px;">Reserve My Free Spot</button>
+</div>
+<div>
+<img src="assets/image-02.jpg" alt="CSS Atelier" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center top; filter:grayscale(100%) contrast(1.05); margin-bottom:20px;">
+<div class="stat-card">
+<span class="eyebrow">What you'll leave with</span>
+<h3>The CSS Launch Framework™</h3>
+<p>Six strategic pillars used to build commercially sustainable fashion brands, plus a live Q&amp;A with three industry specialists.</p>
+<div class="stat-footer">Free · Live online · Registration gift included</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-band">
+<div class="ticker-track">
+<span>Brand Strategy &amp; Positioning</span>
+<span>Commercial Foundation</span>
+<span>Product Development</span>
+<span>Production &amp; Supply Chain</span>
+<span>Market Entry</span>
+<span>Business Infrastructure</span>
+<span>Brand Strategy &amp; Positioning</span>
+<span>Commercial Foundation</span>
+<span>Product Development</span>
+<span>Production &amp; Supply Chain</span>
+<span>Market Entry</span>
+<span>Business Infrastructure</span>
+</div>
+</div>
+
+
+<!-- PILLARS + TOPICS -->
+<section>
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">What we'll cover</p>
+<h2>The CSS Launch Framework™</h2>
+</div>
+<div class="pillars">
+<div class="pillar"><div class="num">01</div><h3>Brand Strategy &amp; Positioning</h3><p>Building a brand that increases customer preference and pricing power.</p></div>
+<div class="pillar"><div class="num">02</div><h3>Commercial Foundation</h3><p>Decisions that need to be made before investing in development.</p></div>
+<div class="pillar"><div class="num">03</div><h3>Product Development</h3><p>Turning a concept into a sample that's ready for production.</p></div>
+<div class="pillar"><div class="num">04</div><h3>Production &amp; Supply Chain</h3><p>Sourcing and manufacturing without losing commercial control.</p></div>
+<div class="pillar"><div class="num">05</div><h3>Market Entry</h3><p>Scaling into new markets while staying commercially disciplined.</p></div>
+<div class="pillar"><div class="num">06</div><h3>Business Infrastructure</h3><p>The operational foundations that let a brand keep growing.</p></div>
+</div>
+
+<div class="topic-list">
+<div class="topic-row">
+<span class="eyebrow">Topic</span>
+<div><h3>Why most fashion brands struggle before they launch</h3><p>Understand the biggest misconception that causes founders to invest in the wrong areas too early.</p></div>
+</div>
+<div class="topic-row">
+<span class="eyebrow">Topic</span>
+<div><h3>The most common founder mistakes</h3><p>The mistakes we see repeatedly when working with fashion startups — and how to avoid them.</p></div>
+</div>
+<div class="topic-row">
+<span class="eyebrow">Topic</span>
+<div><h3>Building a brand that can grow</h3><p>How strategy, creativity and commercial thinking work together to create a sustainable fashion business.</p></div>
+</div>
+<div class="topic-row">
+<span class="eyebrow">Live</span>
+<div><h3>Q&amp;A with the speakers</h3><p>Bring your questions on launching, scaling, or strengthening a fashion brand.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers-section">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">Your speakers</p>
+<h2>Meet the Expert Panel</h2>
+</div>
+<div class="speaker-grid">
+<div class="speaker-card">
+<img src="assets/image-03.jpg" alt="Eugenia, Co-Founder of Creative Sample Studio">
+<span class="speaker-name">Evgeniya Khorosheva</span>
+<span class="speaker-role">Co-Founder &amp; CEO | Fashion Business &amp; Product Development Strategist</span>
+<p>Evgeniya is the Co-Founder and CEO of Creative Sample Studio (CSS), a London-based fashion consultancy helping startups, emerging brands and established businesses build commercially successful fashion brands. With over 16 years of experience across manufacturing facilities, ateliers and fashion brands, and more than seven years leading CSS, she combines strategic business thinking with hands-on expertise in product development and production. During this webinar, she will share the strategic framework behind successful fashion brand launches and explain why sustainable brands are built as systems — not just collections.</p>
+</div>
+
+<div class="speaker-card">
+<img src="assets/image-04.jpg" alt="Ksenia McGinn, Brand Strategist">
+<span class="speaker-name">Ksenia McGinn</span>
+<span class="speaker-role">Brand &amp; Market Strategy Consultant</span>
+<p>Ksenia is a Brand Strategist with over 12 years of experience in marketing and brand strategy, including eight years at Google UK. Her expertise lies in brand positioning, customer strategy and market differentiation. During this webinar, Ksenia will explain how strategic positioning, branding and market entry decisions influence long-term growth and commercial success.</p>
+</div>
+
+<div class="speaker-card">
+<img src="assets/image-05.jpg" alt="Ludovica Ferrari, Senior Commercial Strategist">
+<span class="speaker-name">Ludovica Ferrari</span>
+<span class="speaker-role">Commercial Fashion Strategist</span>
+<p>Ludovica is a senior fashion executive with more than 10 years of international experience across luxury fashion and lifestyle brands, specialising in commercial strategy, wholesale, international expansion and business operations. During this webinar, Ludovica will share practical insights into pricing, profitability, assortment planning and distribution strategy.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<div style="overflow:hidden; line-height:0;">
+<img src="assets/image-06.jpg" alt="" style="width:100%; display:block; object-fit:cover; height:340px; filter:grayscale(100%) contrast(1.05);" loading="lazy">
+
+</div>
+
+<!-- ABOUT CSS -->
+<section>
+<div class="wrap about-css">
+
+<div>
+<p class="eyebrow" style="color:var(--navy); margin-bottom:16px;">About Creative Sample Studio</p>
+<h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-bottom:22px;">CSS bridges the gap between a great idea and a commercially viable brand.</h2>
+<p>Founded in 2018, CSS bridges the gap between creativity and commercial success — recognising that many talented founders had strong ideas, but lacked the strategic, technical and production expertise needed to bring them to market.</p>
+<p>Our multidisciplinary team brings together over 100 years of combined experience across fashion design, product development, manufacturing, branding and business strategy — supporting clients across the UK, Europe, the Middle East and the United States.</p>
+<div class="philosophy">A successful fashion brand isn't built on one great collection — it's built on a strong system.</div>
+</div>
+</div>
+</section>
+
+<div style="overflow:hidden; line-height:0;">
+<img src="assets/image-07.jpg" alt="" style="width:100%; display:block; object-fit:cover; height:340px; filter:grayscale(100%) contrast(1.05);" loading="lazy">
+
+</div>
+
+<!-- WHO IS THIS FOR -->
+<section style="padding:60px 0; background:var(--cream-soft);">
+<div class="wrap">
+<p class="eyebrow" style="color:var(--navy); margin-bottom:16px;">Who is this webinar for?</p>
+<h2 style="font-size:clamp(1.4rem,3vw,2rem); margin-bottom:28px;">Perfect for:</h2>
+<ul style="list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;">
+<li style="padding:18px 20px; background:var(--navy); color:var(--cream); border-radius:2px; font-size:0.92rem; line-height:1.4;">Fashion startups</li>
+<li style="padding:18px 20px; background:var(--navy); color:var(--cream); border-radius:2px; font-size:0.92rem; line-height:1.4;">Emerging fashion brands</li>
+<li style="padding:18px 20px; background:var(--navy); color:var(--cream); border-radius:2px; font-size:0.92rem; line-height:1.4;">Fashion designers preparing to launch</li>
+<li style="padding:18px 20px; background:var(--navy); color:var(--cream); border-radius:2px; font-size:0.92rem; line-height:1.4;">Founders developing their first collection</li>
+<li style="padding:18px 20px; background:var(--navy); color:var(--cream); border-radius:2px; font-size:0.92rem; line-height:1.4;">Brands looking to strengthen their commercial and production strategy</li>
+</ul>
+<button class="btn btn-dark" onclick="openModal()" style="margin-top:32px;">Reserve My Free Spot</button>
+</div>
+</section>
+
+<!-- RECORDING -->
+<section class="recording-section" id="recording">
+<div class="wrap">
+<div class="recording-card">
+<div>
+<span class="eyebrow" style="color:var(--navy);">Can’t attend live?</span>
+<h2>Join live for free. Get the recording separately.</h2>
+<p>Live attendance, the Q&amp;A and the CSS Launch Framework™ guide are free for registered attendees. If you cannot join us live, the webinar recording will be available to purchase after the session.</p>
+</div>
+<div class="recording-price">
+<strong data-recording-price>$30</strong>
+<a class="btn btn-dark" href="#" data-recording-checkout aria-disabled="true">Recording coming soon</a>
+<div class="recording-note">Secure checkout will open after the webinar.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+<div class="wrap">
+<span class="eyebrow">Brands that trust us</span>
+<div class="trust-row">
+<span>AIMÉ</span><span>Clio Peppiatt</span><span>16Arlington</span><span>Rejina Pyo</span>
+</div>
+</div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+
+<div class="wrap">
+<span class="eyebrow" style="opacity:0.7;">Free Online Webinar</span>
+<h2 style="margin-top:14px;">Reserve your place at "Fashion Brand as a System"</h2>
+<p style="opacity:0.75; font-size:0.9rem; margin-bottom:6px;">
+📅
+ <span data-webinar-date>Date and time to be announced</span> &nbsp;·&nbsp; Live on Zoom</p>
+<p>Leave your details to receive the Zoom link and the PDF guide — free, no obligation.</p>
+<button class="btn" onclick="openModal()">Reserve My Free Spot</button>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+<span>© 2026 Creative Sample Studio</span>
+<span>17 Linen House, 253 Kilburn Lane, London W10 4BQ</span>
+<span><a class="text-link" href="https://www.creativesamplestudio.co.uk/privacy-policy">Privacy</a> · <a class="text-link" href="https://www.creativesamplestudio.co.uk/termsconditions">Terms</a></span>
+</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="registration-title">
+<button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+<h3 id="registration-title">Register for the session</h3>
+<p class="sub">Leave your details to receive the Zoom link and the PDF guide "The CSS Launch Framework™".</p>
+<form id="registration-form" name="webinar-registration" novalidate>
+<input type="hidden" name="webinar_id" value="WEB-TBC-01">
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px;">
+<input type="hidden" name="utm_source">
+<input type="hidden" name="utm_medium">
+<input type="hidden" name="utm_campaign">
+<input type="hidden" name="utm_content">
+<div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+<div class="field"><label for="phone">Phone number (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+44"></div>
+<div class="field"><label for="brand">Brand / company (optional)</label><input id="brand" name="brand" type="text"></div>
+<div class="field-consent">
+<label class="consent-label">
+<input type="checkbox" id="marketing-consent" name="marketing_consent" value="yes">
+<span>Yes, I’d also like to receive occasional emails from Creative Sample Studio about future events and resources. I can unsubscribe at any time.</span>
+</label>
+</div>
+<button class="btn" type="submit" data-submit-button>Confirm My Free Spot</button>
+<div class="form-status" role="status" aria-live="polite" data-form-status></div>
+</form>
+<p class="modal-note">By registering, you agree that Creative Sample Studio may use your details to administer this webinar, send your unique Zoom access link and webinar-related follow-up. See our <a class="text-link" href="https://www.creativesamplestudio.co.uk/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+</div>
+</div>
+
+<!-- Success popup (hidden by default) -->
+<div id="success-popup" style="display:none; position:fixed; inset:0; background:#262C9E; z-index:1000; align-items:center; justify-content:center; padding:20px;">
+<div style="background:#FFFFFF; max-width:480px; width:100%; padding:48px 40px; text-align:center; border-radius:4px; box-shadow:0 24px 70px rgba(0,0,0,0.3);">
+<h2 style="font-family:'Inter',sans-serif; font-weight:700; font-size:1.7rem; line-height:1.2; color:#262C9E; margin-bottom:16px;">Thank you for registering</h2>
+<p style="font-family:'Inter',sans-serif; font-size:1rem; line-height:1.55; color:#2c2c2c; margin-bottom:28px;">We're delighted to have you join us. We'll be in touch with your Zoom link ahead of the session.</p>
+<button type="button" onclick="closeSuccessPopup()" style="background:#262C9E; color:#FFFFFF; border:none; padding:14px 34px; font-family:'Inter',sans-serif; font-weight:700; letter-spacing:0.05em; font-size:0.86rem; text-transform:uppercase; cursor:pointer; border-radius:4px;">Close</button>
+</div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
