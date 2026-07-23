@@ -2,6 +2,8 @@
 
 Cloudflare Pages project for Creative Sample Studio landing pages.
 
+Live webinar landing: <https://creativesamplestudio.pages.dev/webinar/>
+
 ## Current page
 
 - Webinar: **Fashion Brand as a System**
