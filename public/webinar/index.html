@@ -76,26 +76,32 @@ border-bottom:1px solid var(--line);
 .nav-cta{font-size:0.72rem; padding:11px 20px;}
 
 /* ---------- Hero ---------- */
+.hero-layout{
+display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+gap:64px; align-items:stretch;
+}
 .hero-photo-wrap{
-position:absolute; top:0; left:0; width:44%; height:100%;
+position:relative; min-width:0; min-height:620px;
 overflow:hidden; z-index:1;
 }
 .hero-photo{width:100%; height:100%; object-fit:cover; object-position:center top; display:block; filter:grayscale(100%) contrast(1.05);}
+.hero-image-mobile{display:none; overflow:hidden; line-height:0;}
+.hero-image-mobile img{width:100%; height:340px; display:block; object-fit:cover; filter:grayscale(100%) contrast(1.05);}
 
 .hero{
 background:var(--navy); color:var(--cream);
 position:relative; overflow:hidden;
-padding:90px 0 70px;
+padding:70px 0;
 }
 
-.hero-inner{position:relative; z-index:3; max-width:560px; }
+.hero-inner{position:relative; z-index:3; max-width:100%; padding:18px 0;}
 .free-tag{
 display:inline-flex; align-items:center; gap:8px;
 border:1px solid var(--cream); border-radius:999px;
 padding:6px 16px; margin-bottom:26px;
 }
 .free-tag .dot{width:7px; height:7px; border-radius:50%; background:var(--cream);}
-.hero h1{font-size:clamp(2.4rem, 5.8vw, 4rem); margin:0 0 22px; letter-spacing:-0.02em;}
+.hero h1{font-size:clamp(2.4rem, 4.6vw, 4rem); margin:0 0 22px; letter-spacing:-0.02em;}
 .hero h1 span{color:var(--white); opacity:0.38;}
 .hero p.lead{font-size:1.05rem; max-width:540px; opacity:0.88; margin-bottom:34px;}
 .hero-meta{
@@ -275,8 +281,10 @@ box-shadow:0 14px 40px rgba(0,0,0,.28); font-size:.78rem; line-height:1.5;
 @media (max-width:900px){
 
 .hero{padding:60px 0 50px;}
-.hero-inner{margin-left:0 !important; max-width:100% !important;}
+.hero-layout{grid-template-columns:1fr;}
+.hero-inner{margin-left:0 !important; max-width:100% !important; padding:0;}
 .hero-photo-wrap{display:none;}
+.hero-image-mobile{display:block;}
 .hero h1{font-size:2.2rem;}
 .hero-meta{flex-direction:column; gap:14px;}
 .about-grid, .about-css{grid-template-columns:1fr;}
@@ -327,8 +335,8 @@ footer{padding:28px 0;}
 <!-- HERO -->
 <section class="hero">
 
-
-<div class="wrap hero-inner">
+<div class="wrap hero-layout">
+<div class="hero-inner">
 <div class="free-tag">
 <span class="dot"></span>
 <span class="eyebrow">Free Online Webinar</span>
@@ -355,11 +363,14 @@ footer{padding:28px 0;}
 </div>
 <p class="hero-sub-note">Free Registration Bonus: The CSS Launch Framework™ Guide</p>
 </div>
+<div class="hero-photo-wrap" aria-hidden="true">
+<img class="hero-photo" src="assets/image-01.jpg" alt="" loading="eager">
+</div>
+</div>
 </section>
 
-<div style="overflow:hidden; line-height:0;">
-<img src="assets/image-01.jpg" alt="" style="width:100%; display:block; object-fit:cover; height:340px; filter:grayscale(100%) contrast(1.05);" loading="lazy">
-
+<div class="hero-image-mobile">
+<img src="assets/image-01.jpg" alt="Fashion production at Creative Sample Studio" loading="lazy">
 </div>
 
 <!-- ABOUT WEBINAR -->
