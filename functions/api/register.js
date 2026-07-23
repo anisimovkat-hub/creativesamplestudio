@@ -183,6 +183,7 @@ export async function onRequestPost(context) {
     email: clean(body.email, 254).toLowerCase(),
     phone: clean(body.phone, 50),
     brand: clean(body.brand, 120),
+    position: clean(body.position, 120),
     marketing_consent: body.marketing_consent === true,
     landing_url: clean(body.landing_url, 1000),
     utm_source: clean(body.utm_source, 120),

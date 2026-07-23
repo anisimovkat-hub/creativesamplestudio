@@ -43,6 +43,7 @@ function doPost(event) {
       'Email': payload.email,
       'Phone': payload.phone,
       'Brand / Company': payload.brand,
+      'Position': payload.position,
       'Marketing Consent': payload.marketing_consent ? 'Yes' : 'No',
       'UTM Source': payload.utm_source,
       'UTM Medium': payload.utm_medium,
