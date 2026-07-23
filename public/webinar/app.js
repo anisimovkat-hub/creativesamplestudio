@@ -155,7 +155,9 @@
         body: JSON.stringify(payload)
       });
       const result = await response.json().catch(function () { return {}; });
-      if (!response.ok) throw new Error(result.error || "Registration request failed");
+      if (!response.ok || result.ok !== true) {
+        throw new Error(result.error || "Registration request failed");
+      }
 
       form.reset();
       window.closeModal();
