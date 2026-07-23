@@ -116,7 +116,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
   const safeDate = escapeHtml(env.WEBINAR_DATE_LABEL);
   const safeTitle = escapeHtml(env.WEBINAR_TITLE);
   const safeJoinUrl = escapeHtml(zoomRegistrant.join_url);
-  const subject = `You’re registered — ${env.WEBINAR_TITLE}`;
+  const subject = `👗 Webinar: ${env.WEBINAR_TITLE} — ${env.WEBINAR_DATE_LABEL}`;
   const textContent = [
     `Hello ${splitName(lead.name).firstName},`,
     "",
