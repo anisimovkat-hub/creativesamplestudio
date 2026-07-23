@@ -28,6 +28,27 @@ function splitName(fullName) {
   };
 }
 
+function escapeIcs(value) {
+  return String(value || "")
+    .replaceAll("\\", "\\\\")
+    .replaceAll(/\r?\n/g, "\\n")
+    .replaceAll(",", "\\,")
+    .replaceAll(";", "\\;");
+}
+
+function formatIcsUtc(date) {
+  return date.toISOString().replaceAll("-", "").replaceAll(":", "").replace(/\.\d{3}Z$/, "Z");
+}
+
+function utf8ToBase64(value) {
+  const bytes = new TextEncoder().encode(value);
+  let binary = "";
+  for (let offset = 0; offset < bytes.length; offset += 8192) {
+    binary += String.fromCharCode(...bytes.subarray(offset, offset + 8192));
+  }
+  return btoa(binary);
+}
+
 async function zoomAccessToken(env) {
   const credentials = btoa(`${env.ZOOM_CLIENT_ID}:${env.ZOOM_CLIENT_SECRET}`);
   const tokenUrl = new URL("https://zoom.us/oauth/token");
@@ -112,10 +133,57 @@ async function upsertBrevoContact(env, lead) {
 }
 
 async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
+  const webinarStart = new Date(env.WEBINAR_START_UTC);
+  const durationMinutes = Number(env.WEBINAR_DURATION_MINUTES || 60);
+  if (Number.isNaN(webinarStart.getTime()) || !Number.isFinite(durationMinutes) || durationMinutes <= 0) {
+    throw new Error("Webinar calendar configuration is invalid");
+  }
+  const webinarEnd = new Date(webinarStart.getTime() + durationMinutes * 60_000);
+  const startIcs = formatIcsUtc(webinarStart);
+  const endIcs = formatIcsUtc(webinarEnd);
+  const calendarDetails = [
+    `Personal Zoom link: ${zoomRegistrant.join_url}`,
+    "",
+    "Please do not share this link. It allows Creative Sample Studio to record your attendance correctly."
+  ].join("\n");
+  const googleCalendarUrl = new URL("https://calendar.google.com/calendar/render");
+  googleCalendarUrl.searchParams.set("action", "TEMPLATE");
+  googleCalendarUrl.searchParams.set("text", env.WEBINAR_TITLE);
+  googleCalendarUrl.searchParams.set("dates", `${startIcs}/${endIcs}`);
+  googleCalendarUrl.searchParams.set("details", calendarDetails);
+  googleCalendarUrl.searchParams.set("location", "Zoom");
+  const icsContent = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Creative Sample Studio//Webinar//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:REQUEST",
+    "BEGIN:VEVENT",
+    `UID:css-webinar-${startIcs.slice(0, 8)}@creativesamplestudio.co.uk`,
+    `DTSTAMP:${formatIcsUtc(new Date())}`,
+    `DTSTART:${startIcs}`,
+    `DTEND:${endIcs}`,
+    `SUMMARY:${escapeIcs(env.WEBINAR_TITLE)}`,
+    `DESCRIPTION:${escapeIcs(calendarDetails)}`,
+    "LOCATION:Zoom",
+    `URL:${escapeIcs(zoomRegistrant.join_url)}`,
+    `ORGANIZER;CN=Creative Sample Studio:mailto:${env.BREVO_SENDER_EMAIL}`,
+    `ATTENDEE;RSVP=TRUE:mailto:${lead.email}`,
+    "STATUS:CONFIRMED",
+    "TRANSP:OPAQUE",
+    "BEGIN:VALARM",
+    "TRIGGER:-PT24H",
+    "ACTION:DISPLAY",
+    `DESCRIPTION:${escapeIcs(env.WEBINAR_TITLE)} starts in 24 hours`,
+    "END:VALARM",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
   const safeName = escapeHtml(splitName(lead.name).firstName);
   const safeDate = escapeHtml(env.WEBINAR_DATE_LABEL);
   const safeTitle = escapeHtml(env.WEBINAR_TITLE);
   const safeJoinUrl = escapeHtml(zoomRegistrant.join_url);
+  const safeGoogleCalendarUrl = escapeHtml(googleCalendarUrl.toString());
   const subject = `👗 Webinar: ${env.WEBINAR_TITLE} — ${env.WEBINAR_DATE_LABEL}`;
   const textContent = [
     `Hello ${splitName(lead.name).firstName},`,
@@ -125,6 +193,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
     "Live online on Zoom · 60 minutes · Live Q&A included",
     "",
     `Join the webinar: ${zoomRegistrant.join_url}`,
+    `Add to Google Calendar: ${googleCalendarUrl.toString()}`,
     "",
     "This is your personal Zoom link. Please do not share it, because it allows us to record your attendance correctly.",
     "",
@@ -240,6 +309,16 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
                       </td>
                     </tr>
                     <tr>
+                      <td class="email-body" align="center" style="padding:0 36px 24px;">
+                        <a href="${safeGoogleCalendarUrl}" style="display:inline-block;border:1px solid #262C9E;padding:14px 24px;color:#262C9E;font-size:12px;font-weight:800;letter-spacing:0.8px;text-decoration:none;text-transform:uppercase;">
+                          Add to Google Calendar
+                        </a>
+                        <div style="margin-top:10px;color:#6B7280;font-size:11px;line-height:1.5;">
+                          An .ics calendar invitation is also attached for Apple Calendar and Outlook.
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
                       <td class="email-body" style="padding:0 36px 32px;">
                         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
                           <tr>
@@ -269,7 +348,11 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
               </tr>
             </table>
           </body>
-        </html>`
+        </html>`,
+      attachment: [{
+        content: utf8ToBase64(icsContent),
+        name: "fashion-brand-as-a-system-webinar.ics"
+      }]
     })
   });
   if (!response.ok) throw new Error("Confirmation email failed");
@@ -285,16 +368,18 @@ export async function onRequestPost(context) {
   const contentLength = Number(request.headers.get("content-length") || 0);
   if (contentLength > 12_000) return json({ error: "Request is too large." }, 413);
 
-  const requiredSecrets = [
+  const requiredConfiguration = [
     "ZOOM_ACCOUNT_ID",
     "ZOOM_CLIENT_ID",
     "ZOOM_CLIENT_SECRET",
     "ZOOM_MEETING_ID",
     "BREVO_API_KEY",
     "GOOGLE_SHEETS_WEBHOOK_URL",
-    "GOOGLE_SHEETS_WEBHOOK_SECRET"
+    "GOOGLE_SHEETS_WEBHOOK_SECRET",
+    "WEBINAR_START_UTC",
+    "WEBINAR_DURATION_MINUTES"
   ];
-  if (requiredSecrets.some((key) => !env[key])) {
+  if (requiredConfiguration.some((key) => !env[key])) {
     return json({ error: "Registration is being prepared. Please try again shortly." }, 503);
   }
 
