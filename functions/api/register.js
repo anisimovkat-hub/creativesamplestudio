@@ -157,7 +157,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>${safeTitle}</title>
           </head>
-          <body style="margin:0;padding:0;background:#F4F5F7;color:#111114;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;">
+          <body style="margin:0;padding:0;background:#F4F5F7;color:#111114;font-family:Inter,Arial,sans-serif;">
             <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
               Your place is confirmed. Your personal Zoom link is inside.
             </div>
@@ -167,7 +167,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
                   <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#FFFFFF;border-collapse:collapse;">
                     <tr>
                       <td style="background:#262C9E;padding:28px 36px;border-bottom:1px solid rgba(255,255,255,0.22);">
-                        <div style="color:#F4F5F7;font-size:14px;font-weight:800;letter-spacing:1.5px;line-height:1.05;text-transform:uppercase;">
+                        <div style="color:#F4F5F7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:800;letter-spacing:1.5px;line-height:1.05;text-transform:uppercase;">
                           Creative<br>Sample Studio
                         </div>
                       </td>
@@ -177,7 +177,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
                         <div style="display:inline-block;border:1px solid #F4F5F7;border-radius:999px;padding:8px 13px;color:#F4F5F7;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;">
                           ● &nbsp; Free online webinar
                         </div>
-                        <h1 style="margin:24px 0 16px;color:#FFFFFF;font-size:39px;line-height:1.02;letter-spacing:-1.2px;text-transform:uppercase;">
+                        <h1 style="margin:24px 0 16px;color:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:39px;line-height:1.02;letter-spacing:-1.2px;text-transform:uppercase;">
                           Fashion Brand<br>as a <span style="color:#9296CE;">System</span>
                         </h1>
                         <p style="margin:0;color:#F4F5F7;font-size:16px;line-height:1.65;">
@@ -243,7 +243,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
                     </tr>
                     <tr>
                       <td style="background:#111114;padding:26px 36px;text-align:center;">
-                        <div style="margin-bottom:9px;color:#F4F5F7;font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;">Creative Sample Studio</div>
+                        <div style="margin-bottom:9px;color:#F4F5F7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;">Creative Sample Studio</div>
                         <div style="color:#B9BBC4;font-size:11px;line-height:1.6;">
                           You received this transactional email because you registered for the webinar.
                         </div>
