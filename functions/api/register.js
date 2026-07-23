@@ -120,7 +120,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
   const textContent = [
     `Hello ${splitName(lead.name).firstName},`,
     "",
-    `Your place for ${env.WEBINAR_TITLE} is confirmed.`,
+    `Thank you for registering for our webinar, ${env.WEBINAR_TITLE}. We’re delighted to have you join us live.`,
     env.WEBINAR_DATE_LABEL,
     "Live online on Zoom · 60 minutes · Live Q&A included",
     "",
@@ -156,54 +156,69 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>${safeTitle}</title>
+            <style>
+              @media only screen and (max-width: 520px) {
+                .email-header { padding: 18px 14px !important; }
+                .email-brand { font-size: 9.5px !important; letter-spacing: 0.5px !important; }
+                .email-badge { font-size: 8px !important; letter-spacing: 0.4px !important; padding: 6px 8px !important; }
+                .email-hero { padding: 30px 20px 32px !important; }
+                .email-title { font-size: 32px !important; }
+                .email-body { padding-left: 20px !important; padding-right: 20px !important; }
+              }
+            </style>
           </head>
           <body style="margin:0;padding:0;background:#F4F5F7;color:#111114;font-family:Inter,Arial,sans-serif;">
             <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
-              Your place is confirmed. Your personal Zoom link is inside.
+              Your registration is complete. Your personal Zoom link is inside.
             </div>
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#F4F5F7;">
               <tr>
                 <td align="center" style="padding:28px 14px;">
                   <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#FFFFFF;border-collapse:collapse;">
                     <tr>
-                      <td style="background:#262C9E;padding:28px 36px;border-bottom:1px solid rgba(255,255,255,0.22);">
-                        <div style="color:#F4F5F7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:800;letter-spacing:1.5px;line-height:1.05;text-transform:uppercase;">
-                          Creative<br>Sample Studio
-                        </div>
+                      <td class="email-header" style="background:#262C9E;padding:24px 36px;border-bottom:1px solid rgba(255,255,255,0.22);">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
+                          <tr>
+                            <td valign="middle" style="white-space:nowrap;">
+                              <div class="email-brand" style="color:#F4F5F7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:800;letter-spacing:1.2px;line-height:1;text-transform:uppercase;white-space:nowrap;">
+                                Creative Sample Studio
+                              </div>
+                            </td>
+                            <td align="right" valign="middle" style="white-space:nowrap;">
+                              <div class="email-badge" style="display:inline-block;border:1px solid #F4F5F7;border-radius:999px;padding:8px 12px;color:#F4F5F7;font-size:10px;font-weight:700;letter-spacing:1.1px;line-height:1;text-transform:uppercase;white-space:nowrap;">
+                                ● &nbsp; Free online webinar
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
                       </td>
                     </tr>
                     <tr>
-                      <td style="background:#262C9E;padding:42px 36px 46px;">
-                        <div style="display:inline-block;border:1px solid #F4F5F7;border-radius:999px;padding:8px 13px;color:#F4F5F7;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;">
-                          ● &nbsp; Free online webinar
-                        </div>
-                        <h1 style="margin:24px 0 16px;color:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:39px;line-height:1.02;letter-spacing:-1.2px;text-transform:uppercase;">
+                      <td class="email-hero" style="background:#262C9E;padding:34px 36px 38px;">
+                        <h1 class="email-title" style="margin:0;color:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:39px;line-height:1.02;letter-spacing:-1.2px;text-transform:uppercase;">
                           Fashion Brand<br>as a <span style="color:#9296CE;">System</span>
                         </h1>
-                        <p style="margin:0;color:#F4F5F7;font-size:16px;line-height:1.65;">
-                          Your place is confirmed.
-                        </p>
                       </td>
                     </tr>
                     <tr>
-                      <td style="padding:38px 36px 12px;">
+                      <td class="email-body" style="padding:30px 36px 10px;">
                         <p style="margin:0 0 14px;color:#111114;font-size:17px;line-height:1.65;">Hello ${safeName},</p>
                         <p style="margin:0;color:#2C2C2C;font-size:16px;line-height:1.7;">
-                          Thank you for registering for <strong>${safeTitle}</strong>. We’re delighted to have you join us live.
+                          Thank you for registering for our webinar, <strong>${safeTitle}</strong>. We’re delighted to have you join us live.
                         </p>
                       </td>
                     </tr>
                     <tr>
-                      <td style="padding:22px 36px;">
+                      <td class="email-body" style="padding:18px 36px;">
                         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;border:1px solid #D8DCE8;background:#F4F5F7;">
                           <tr>
-                            <td style="padding:22px 24px;border-bottom:1px solid #D8DCE8;">
+                            <td style="padding:18px 22px;border-bottom:1px solid #D8DCE8;">
                               <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Date &amp; time</div>
                               <div style="color:#111114;font-size:16px;font-weight:700;line-height:1.45;">${safeDate}</div>
                             </td>
                           </tr>
                           <tr>
-                            <td style="padding:22px 24px;">
+                            <td style="padding:18px 22px;">
                               <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Format</div>
                               <div style="color:#111114;font-size:15px;line-height:1.45;">Live online · Zoom · 60 minutes · Live Q&amp;A</div>
                             </td>
@@ -212,7 +227,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
                       </td>
                     </tr>
                     <tr>
-                      <td align="center" style="padding:8px 36px 26px;">
+                      <td class="email-body" align="center" style="padding:6px 36px 24px;">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                           <tr>
                             <td align="center" style="background:#262C9E;">
@@ -225,7 +240,7 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
                       </td>
                     </tr>
                     <tr>
-                      <td style="padding:0 36px 38px;">
+                      <td class="email-body" style="padding:0 36px 32px;">
                         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
                           <tr>
                             <td style="border-left:3px solid #262C9E;padding:14px 18px;background:#F4F5F7;color:#4A4A4A;font-size:13px;line-height:1.65;">
