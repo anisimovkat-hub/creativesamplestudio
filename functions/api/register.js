@@ -112,10 +112,24 @@ async function upsertBrevoContact(env, lead) {
 }
 
 async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
-  const safeName = escapeHtml(lead.name);
+  const safeName = escapeHtml(splitName(lead.name).firstName);
   const safeDate = escapeHtml(env.WEBINAR_DATE_LABEL);
   const safeTitle = escapeHtml(env.WEBINAR_TITLE);
   const safeJoinUrl = escapeHtml(zoomRegistrant.join_url);
+  const subject = `You’re registered — ${env.WEBINAR_TITLE}`;
+  const textContent = [
+    `Hello ${splitName(lead.name).firstName},`,
+    "",
+    `Your place for ${env.WEBINAR_TITLE} is confirmed.`,
+    env.WEBINAR_DATE_LABEL,
+    "Live online on Zoom · 60 minutes · Live Q&A included",
+    "",
+    `Join the webinar: ${zoomRegistrant.join_url}`,
+    "",
+    "This is your personal Zoom link. Please do not share it, because it allows us to record your attendance correctly.",
+    "",
+    "Creative Sample Studio"
+  ].join("\n");
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: {
@@ -128,18 +142,119 @@ async function sendBrevoConfirmation(env, lead, zoomRegistrant) {
         email: env.BREVO_SENDER_EMAIL,
         name: env.BREVO_SENDER_NAME
       },
+      replyTo: {
+        email: env.BREVO_SENDER_EMAIL,
+        name: env.BREVO_SENDER_NAME
+      },
       to: [{ email: lead.email, name: lead.name }],
-      subject: `Your Zoom link — ${env.WEBINAR_TITLE}`,
+      subject,
+      textContent,
       htmlContent: `
-        <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111114;max-width:620px;margin:auto">
-          <h1 style="color:#262C9E;font-size:26px">You’re registered</h1>
-          <p>Hello ${safeName},</p>
-          <p>Your place for <strong>${safeTitle}</strong> is confirmed.</p>
-          <p><strong>${safeDate}</strong></p>
-          <p><a href="${safeJoinUrl}" style="display:inline-block;background:#262C9E;color:#fff;padding:14px 22px;text-decoration:none;font-weight:bold">Join the webinar on Zoom</a></p>
-          <p>This is your personal Zoom link. Please do not share it, because it lets us correctly record your attendance.</p>
-          <p>Creative Sample Studio</p>
-        </div>`
+        <!doctype html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>${safeTitle}</title>
+          </head>
+          <body style="margin:0;padding:0;background:#F4F5F7;color:#111114;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;">
+            <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+              Your place is confirmed. Your personal Zoom link is inside.
+            </div>
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#F4F5F7;">
+              <tr>
+                <td align="center" style="padding:28px 14px;">
+                  <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#FFFFFF;border-collapse:collapse;">
+                    <tr>
+                      <td style="background:#262C9E;padding:28px 36px;border-bottom:1px solid rgba(255,255,255,0.22);">
+                        <div style="color:#F4F5F7;font-size:14px;font-weight:800;letter-spacing:1.5px;line-height:1.05;text-transform:uppercase;">
+                          Creative<br>Sample Studio
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="background:#262C9E;padding:42px 36px 46px;">
+                        <div style="display:inline-block;border:1px solid #F4F5F7;border-radius:999px;padding:8px 13px;color:#F4F5F7;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;">
+                          ● &nbsp; Free online webinar
+                        </div>
+                        <h1 style="margin:24px 0 16px;color:#FFFFFF;font-size:39px;line-height:1.02;letter-spacing:-1.2px;text-transform:uppercase;">
+                          Fashion Brand<br>as a <span style="color:#9296CE;">System</span>
+                        </h1>
+                        <p style="margin:0;color:#F4F5F7;font-size:16px;line-height:1.65;">
+                          Your place is confirmed.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:38px 36px 12px;">
+                        <p style="margin:0 0 14px;color:#111114;font-size:17px;line-height:1.65;">Hello ${safeName},</p>
+                        <p style="margin:0;color:#2C2C2C;font-size:16px;line-height:1.7;">
+                          Thank you for registering for <strong>${safeTitle}</strong>. We’re delighted to have you join us live.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:22px 36px;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;border:1px solid #D8DCE8;background:#F4F5F7;">
+                          <tr>
+                            <td style="padding:22px 24px;border-bottom:1px solid #D8DCE8;">
+                              <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Date &amp; time</div>
+                              <div style="color:#111114;font-size:16px;font-weight:700;line-height:1.45;">${safeDate}</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding:22px 24px;">
+                              <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Format</div>
+                              <div style="color:#111114;font-size:15px;line-height:1.45;">Live online · Zoom · 60 minutes · Live Q&amp;A</div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="padding:8px 36px 26px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tr>
+                            <td align="center" style="background:#262C9E;">
+                              <a href="${safeJoinUrl}" style="display:inline-block;padding:17px 30px;color:#FFFFFF;font-size:13px;font-weight:800;letter-spacing:1px;text-decoration:none;text-transform:uppercase;">
+                                Join the webinar on Zoom
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0 36px 38px;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
+                          <tr>
+                            <td style="border-left:3px solid #262C9E;padding:14px 18px;background:#F4F5F7;color:#4A4A4A;font-size:13px;line-height:1.65;">
+                              This is your personal Zoom link. Please do not share it — it allows us to record your attendance correctly.
+                            </td>
+                          </tr>
+                        </table>
+                        <p style="margin:22px 0 7px;color:#6B7280;font-size:12px;line-height:1.6;text-align:center;">
+                          If the button does not work, copy and paste this link into your browser:
+                        </p>
+                        <p style="margin:0;word-break:break-all;text-align:center;">
+                          <a href="${safeJoinUrl}" style="color:#262C9E;font-size:12px;line-height:1.6;">${safeJoinUrl}</a>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="background:#111114;padding:26px 36px;text-align:center;">
+                        <div style="margin-bottom:9px;color:#F4F5F7;font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;">Creative Sample Studio</div>
+                        <div style="color:#B9BBC4;font-size:11px;line-height:1.6;">
+                          You received this transactional email because you registered for the webinar.
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+        </html>`
     })
   });
   if (!response.ok) throw new Error("Confirmation email failed");
