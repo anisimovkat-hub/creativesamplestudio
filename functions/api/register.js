@@ -4,6 +4,7 @@ const JSON_HEADERS = {
 };
 
 const WEBINAR_ID = "CSS-WEB-FASHION-BRAND-AS-A-SYSTEM";
+const INSTAGRAM_URL = "https://www.instagram.com/creativesamplestudio/";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
@@ -88,6 +89,9 @@ async function sendBrevoPreRegistration(env, lead) {
     "",
     "Format: Live online on Zoom",
     "Duration: 60 minutes, including a live Q&A",
+    "",
+    "While you wait, follow Creative Sample Studio on Instagram for fashion business insights, studio updates and practical advice:",
+    INSTAGRAM_URL,
     "",
     "Creative Sample Studio"
   ].join("\n");
@@ -179,6 +183,23 @@ async function sendBrevoPreRegistration(env, lead) {
                             <td style="padding:18px 22px;">
                               <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">What happens next</div>
                               <div style="color:#111114;font-size:15px;line-height:1.6;">We’ll email you as soon as the date and time are confirmed, followed by the Zoom access details.</div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="email-body" align="center" style="padding:0 36px 34px;">
+                        <p style="margin:0 0 8px;color:#111114;font-size:16px;font-weight:700;line-height:1.5;">Stay connected while you wait</p>
+                        <p style="margin:0 0 20px;color:#4A4A4A;font-size:14px;line-height:1.65;">
+                          Follow Creative Sample Studio on Instagram for fashion business insights, studio updates and practical advice.
+                        </p>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tr>
+                            <td align="center" style="background:#262C9E;">
+                              <a href="${INSTAGRAM_URL}" target="_blank" style="display:inline-block;padding:15px 26px;color:#FFFFFF;font-size:12px;font-weight:800;letter-spacing:0.9px;text-decoration:none;text-transform:uppercase;">
+                                Follow us on Instagram
+                              </a>
                             </td>
                           </tr>
                         </table>
