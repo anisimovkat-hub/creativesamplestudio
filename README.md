@@ -8,20 +8,19 @@ Live webinar landing: <https://creativesamplestudio.pages.dev/webinar/>
 
 - Webinar: **Fashion Brand as a System**
 - URL path: `/webinar/`
-- Date: **31 July 2026, 12:00 PM New York / 5:00 PM London**
+- Date: **to be announced by email**
 - Live attendance: free
-- Recording: **$30** (checkout intentionally not enabled yet)
+- Mode: **pre-registration**
 
 The public site is built from `public`. Cloudflare Pages Functions in `functions` provide the protected server-side registration endpoint.
 
 ## Registration flow
 
 1. The landing submits to `POST /api/register` on the same Cloudflare domain.
-2. The server creates an approved Zoom registrant and receives a personal join link.
-3. It saves the lead and Zoom identifiers to Google Sheets.
-4. It adds the contact to the webinar list in Brevo and, only with optional consent, to the marketing list.
-5. Brevo sends the personal Zoom link from `marketing@creativesamplestudio.co.uk`.
-6. The Zoom attendance report can later update the same sheet by webinar ID and email, enabling separate attended and no-show campaigns.
+2. The server saves the lead to Google Sheets with the status `Pre-registered`.
+3. It adds the contact to the webinar list in Brevo and, only with optional consent, to the marketing list.
+4. Brevo sends a pre-registration confirmation from `marketing@creativesamplestudio.co.uk`.
+5. Once the date is confirmed, the date, time and Zoom access details are sent in a separate email.
 
 No API keys are stored in the repository or browser code.
 
@@ -36,10 +35,6 @@ Create the Pages project with Git integration:
 
 Add these encrypted secrets under **Settings → Variables and Secrets**:
 
-- `ZOOM_ACCOUNT_ID`
-- `ZOOM_CLIENT_ID`
-- `ZOOM_CLIENT_SECRET`
-- `ZOOM_MEETING_ID`
 - `BREVO_API_KEY`
 - `GOOGLE_SHEETS_WEBHOOK_URL`
 - `GOOGLE_SHEETS_WEBHOOK_SECRET`
