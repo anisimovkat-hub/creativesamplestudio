@@ -37,7 +37,7 @@ function doPost(event) {
       'Webinar ID': payload.webinar_id,
       'Registered At (UTC)': payload.registered_at,
       'Webinar Title': 'Fashion Brand as a System',
-      'Webinar Date': '2026-07-31',
+      'Webinar Date': payload.webinar_date || 'TBA',
       'First Name': nameParts.firstName,
       'Last Name': nameParts.lastName,
       'Email': payload.email,
@@ -52,7 +52,7 @@ function doPost(event) {
       'Landing URL': payload.landing_url,
       'Zoom Registrant ID': payload.zoom_registrant_id,
       'Zoom Join URL': payload.zoom_join_url,
-      'Registration Status': 'Registered',
+      'Registration Status': payload.registration_status || 'Pre-registered',
       'Attendance Status': ''
     };
 
