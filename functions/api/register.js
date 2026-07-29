@@ -79,7 +79,11 @@ async function upsertBrevoContact(env, lead) {
     },
     body: JSON.stringify(body)
   });
-  if (!response.ok) throw new Error("Brevo contact update failed");
+  if (!response.ok) {
+    const errorBody = await response.text();
+    console.error("Brevo contact update response", response.status, errorBody);
+    throw new Error("Brevo contact update failed");
+  }
 }
 
 async function sendBrevoPreRegistration(env, lead) {
@@ -225,7 +229,11 @@ async function sendBrevoPreRegistration(env, lead) {
         </html>`
     })
   });
-  if (!response.ok) throw new Error("Pre-registration confirmation email failed");
+  if (!response.ok) {
+    const errorBody = await response.text();
+    console.error("Brevo email response", response.status, errorBody);
+    throw new Error("Pre-registration confirmation email failed");
+  }
 }
 
 export async function onRequestPost(context) {
