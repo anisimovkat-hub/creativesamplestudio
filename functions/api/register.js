@@ -23,6 +23,12 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function brevoApiKey(value) {
+  const rawValue = String(value || "");
+  const keyMatch = rawValue.match(/xkeysib-[A-Za-z0-9_-]+/);
+  return keyMatch ? keyMatch[0] : rawValue.replace(/[^\x21-\x7E]/g, "").trim();
+}
+
 function splitName(fullName) {
   const parts = fullName.split(/\s+/).filter(Boolean);
   return {
@@ -68,7 +74,7 @@ async function upsertBrevoContact(env, lead) {
     method: "POST",
     headers: {
       accept: "application/json",
-      "api-key": String(env.BREVO_API_KEY).trim(),
+      "api-key": brevoApiKey(env.BREVO_API_KEY),
       "content-type": "application/json"
     },
     body: JSON.stringify(body)
@@ -100,7 +106,7 @@ async function sendBrevoPreRegistration(env, lead) {
     method: "POST",
     headers: {
       accept: "application/json",
-      "api-key": String(env.BREVO_API_KEY).trim(),
+      "api-key": brevoApiKey(env.BREVO_API_KEY),
       "content-type": "application/json"
     },
     body: JSON.stringify({
