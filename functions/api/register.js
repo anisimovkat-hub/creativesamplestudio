@@ -68,7 +68,7 @@ async function upsertBrevoContact(env, lead) {
     method: "POST",
     headers: {
       accept: "application/json",
-      "api-key": env.BREVO_API_KEY,
+      "api-key": String(env.BREVO_API_KEY).trim(),
       "content-type": "application/json"
     },
     body: JSON.stringify(body)
@@ -100,7 +100,7 @@ async function sendBrevoPreRegistration(env, lead) {
     method: "POST",
     headers: {
       accept: "application/json",
-      "api-key": env.BREVO_API_KEY,
+      "api-key": String(env.BREVO_API_KEY).trim(),
       "content-type": "application/json"
     },
     body: JSON.stringify({
