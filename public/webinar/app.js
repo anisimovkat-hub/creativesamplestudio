@@ -82,36 +82,12 @@
     status.className = "form-status show " + type;
   }
 
-  function currencyLabel(amount, currency) {
-    try {
-      return new Intl.NumberFormat("en-GB", {
-        style: "currency",
-        currency: currency,
-        maximumFractionDigits: 0
-      }).format(amount);
-    } catch (error) {
-      return "$" + amount;
-    }
-  }
-
   document.querySelectorAll("[data-webinar-date]").forEach(function (node) {
     node.textContent = config.displayDate || "Date and time to be announced";
   });
 
   const webinarId = form.querySelector("[name='webinar_id']");
   if (webinarId && config.webinarId) webinarId.value = config.webinarId;
-
-  const price = document.querySelector("[data-recording-price]");
-  if (price) price.textContent = currencyLabel(config.recordingPrice || 30, config.recordingCurrency || "USD");
-
-  const checkout = document.querySelector("[data-recording-checkout]");
-  if (checkout && config.recordingCheckoutUrl) {
-    checkout.href = config.recordingCheckoutUrl;
-    checkout.textContent = "Buy the recording";
-    checkout.removeAttribute("aria-disabled");
-  } else if (checkout) {
-    checkout.addEventListener("click", function (event) { event.preventDefault(); });
-  }
 
   const params = new URLSearchParams(window.location.search);
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (key) {
@@ -137,7 +113,7 @@
     }
 
     if (!config.registrationEndpoint) {
-      setStatus("Registration will open as soon as the webinar date is confirmed.", "info");
+      setStatus("Pre-registration will open shortly.", "info");
       return;
     }
 
@@ -146,7 +122,7 @@
     payload.marketing_consent = form.elements.marketing_consent.checked;
 
     submitButton.disabled = true;
-    submitButton.textContent = "Registering…";
+    submitButton.textContent = "Joining the list…";
 
     try {
       const response = await fetch(config.registrationEndpoint, {
@@ -167,7 +143,7 @@
       setStatus(error.message || "We couldn’t complete your registration. Please try again or contact Creative Sample Studio.", "error");
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = "Confirm My Free Spot";
+      submitButton.textContent = "Join the Pre-registration List";
     }
   });
 }());
