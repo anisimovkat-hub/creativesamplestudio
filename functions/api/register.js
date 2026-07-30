@@ -5,6 +5,9 @@ const JSON_HEADERS = {
 
 const WEBINAR_ID = "CSS-WEB-FASHION-BRAND-AS-A-SYSTEM";
 const INSTAGRAM_URL = "https://www.instagram.com/creativesamplestudio/";
+const WEBSITE_URL = "https://creativesamplestudio.co.uk";
+const GUIDE_URL =
+  "https://creativesamplestudio.pages.dev/webinar/CSS_Launch_Framework_Guide_and_Self_Assessment.pdf";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
@@ -86,24 +89,44 @@ async function upsertBrevoContact(env, lead) {
   }
 }
 
-async function sendBrevoPreRegistration(env, lead) {
+async function sendBrevoGuideEmail(env, lead) {
   const firstName = splitName(lead.name).firstName;
   const safeName = escapeHtml(firstName);
-  const safeTitle = escapeHtml(env.WEBINAR_TITLE);
-  const subject = `You’re on the priority list — ${env.WEBINAR_TITLE}`;
+  const subject =
+    "Your CSS Launch Framework™ Guide & Brand Readiness Self-Assessment";
   const textContent = [
-    `Hello ${firstName},`,
+    `Hi ${firstName},`,
     "",
-    `Thank you for pre-registering for ${env.WEBINAR_TITLE}.`,
-    "The date and time are currently being confirmed. We’ll email you as soon as they are announced, followed by the Zoom access details.",
+    "Thank you for registering for the CSS Launch Framework™ Webinar.",
     "",
-    "Format: Live online on Zoom",
-    "Duration: 60 minutes, including a live Q&A",
+    "As promised, we’re sharing the CSS Launch Framework™ Guide & Brand Readiness Self-Assessment with you.",
     "",
-    "While you wait, follow Creative Sample Studio on Instagram for fashion business insights, studio updates and practical advice:",
-    INSTAGRAM_URL,
+    "The webinar date and time are still being confirmed. We’ll email you the details and Zoom access as soon as they are available.",
     "",
-    "Creative Sample Studio"
+    "The guide will help you assess the six pillars behind a commercially viable fashion brand:",
+    "• Brand Strategy & Positioning",
+    "• Commercial Foundation",
+    "• Product Development",
+    "• Production & Supply Chain",
+    "• Market Entry",
+    "• Business Infrastructure",
+    "",
+    "Through the self-assessment, you’ll identify the strongest and weakest areas of your business, uncover important gaps and dependencies, and calculate your Brand Readiness Score out of 48.",
+    "",
+    `Download the guide: ${GUIDE_URL}`,
+    "",
+    "If you have questions about brand strategy, product development, production, supply chain or launching your fashion brand, simply reply to this email.",
+    "",
+    "We also offer one-to-one consultations for founders who would like tailored guidance on the next steps for their business.",
+    "",
+    `Learn more: ${WEBSITE_URL}`,
+    `Instagram: ${INSTAGRAM_URL}`,
+    "",
+    "Best regards,",
+    "Evgeniya Khorosheva",
+    "Co-Founder & Brand Strategist",
+    "Creative Sample Studio",
+    "London"
   ].join("\n");
 
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -131,7 +154,7 @@ async function sendBrevoPreRegistration(env, lead) {
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>${safeTitle}</title>
+            <title>CSS Launch Framework™ Guide</title>
             <style>
               @media only screen and (max-width: 520px) {
                 .email-header { padding: 18px 14px !important; }
@@ -145,7 +168,7 @@ async function sendBrevoPreRegistration(env, lead) {
           </head>
           <body style="margin:0;padding:0;background:#F4F5F7;color:#111114;font-family:Inter,Arial,sans-serif;">
             <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
-              You’re on the pre-registration list. We’ll announce the webinar date by email.
+              Identify the strengths, gaps and risks across the six pillars of your fashion business.
             </div>
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#F4F5F7;">
               <tr>
@@ -159,7 +182,7 @@ async function sendBrevoPreRegistration(env, lead) {
                               <div class="email-brand" style="color:#F4F5F7;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap;">Creative Sample Studio</div>
                             </td>
                             <td align="right" valign="middle" style="white-space:nowrap;">
-                              <div class="email-badge" style="display:inline-block;border:1px solid #F4F5F7;border-radius:999px;padding:8px 12px;color:#F4F5F7;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;">● &nbsp; Pre-registered</div>
+                              <div class="email-badge" style="display:inline-block;border:1px solid #F4F5F7;border-radius:999px;padding:8px 12px;color:#F4F5F7;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;">● &nbsp; Guide included</div>
                             </td>
                           </tr>
                         </table>
@@ -168,51 +191,81 @@ async function sendBrevoPreRegistration(env, lead) {
                     <tr>
                       <td class="email-hero" style="background:#262C9E;padding:34px 36px 38px;">
                         <h1 class="email-title" style="margin:0;color:#FFFFFF;font-family:Helvetica,Arial,sans-serif;font-size:39px;line-height:1.02;letter-spacing:-1.2px;text-transform:uppercase;">
-                          Fashion Brand<br>as a <span style="color:#9296CE;">System</span>
+                          CSS Launch<br><span style="color:#9296CE;">Framework™ Guide</span>
                         </h1>
                       </td>
                     </tr>
                     <tr>
                       <td class="email-body" style="padding:30px 36px 10px;">
-                        <p style="margin:0 0 14px;color:#111114;font-size:17px;line-height:1.65;">Hello ${safeName},</p>
+                        <p style="margin:0 0 14px;color:#111114;font-size:17px;line-height:1.65;">Hi ${safeName},</p>
+                        <p style="margin:0 0 12px;color:#2C2C2C;font-size:16px;line-height:1.7;">
+                          Thank you for registering for the <strong>CSS Launch Framework™ Webinar</strong>.
+                        </p>
                         <p style="margin:0;color:#2C2C2C;font-size:16px;line-height:1.7;">
-                          Thank you for pre-registering for <strong>${safeTitle}</strong>. You’re now on the priority list.
+                          As promised, we’re sharing the <strong>CSS Launch Framework™ Guide &amp; Brand Readiness Self-Assessment</strong> with you.
                         </p>
                       </td>
                     </tr>
                     <tr>
-                      <td class="email-body" style="padding:18px 36px 30px;">
+                      <td class="email-body" style="padding:18px 36px 16px;">
                         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;border:1px solid #D8DCE8;background:#F4F5F7;">
                           <tr>
-                            <td style="padding:18px 22px;border-bottom:1px solid #D8DCE8;">
-                              <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Date &amp; time</div>
-                              <div style="color:#111114;font-size:16px;font-weight:700;line-height:1.45;">To be announced</div>
-                            </td>
-                          </tr>
-                          <tr>
                             <td style="padding:18px 22px;">
-                              <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">What happens next</div>
-                              <div style="color:#111114;font-size:15px;line-height:1.6;">We’ll email you as soon as the date and time are confirmed, followed by the Zoom access details.</div>
+                              <div style="margin-bottom:7px;color:#6B7280;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;">Webinar details</div>
+                              <div style="color:#111114;font-size:15px;line-height:1.6;">The date and time are still being confirmed. We’ll email you the details and Zoom access as soon as they are available.</div>
                             </td>
                           </tr>
                         </table>
                       </td>
                     </tr>
                     <tr>
-                      <td class="email-body" align="center" style="padding:0 36px 34px;">
-                        <p style="margin:0 0 8px;color:#111114;font-size:16px;font-weight:700;line-height:1.5;">Stay connected while you wait</p>
-                        <p style="margin:0 0 20px;color:#4A4A4A;font-size:14px;line-height:1.65;">
-                          Follow Creative Sample Studio on Instagram for fashion business insights, studio updates and practical advice.
+                      <td class="email-body" style="padding:10px 36px 24px;">
+                        <p style="margin:0 0 13px;color:#111114;font-size:16px;font-weight:700;line-height:1.5;">Assess the six pillars behind a commercially viable fashion brand:</p>
+                        <p style="margin:0;color:#4A4A4A;font-size:14px;line-height:1.85;">
+                          • Brand Strategy &amp; Positioning<br>
+                          • Commercial Foundation<br>
+                          • Product Development<br>
+                          • Production &amp; Supply Chain<br>
+                          • Market Entry<br>
+                          • Business Infrastructure
                         </p>
+                        <p style="margin:16px 0 0;color:#4A4A4A;font-size:14px;line-height:1.7;">
+                          Identify your strongest and weakest areas, uncover important gaps and dependencies, and calculate your Brand Readiness Score out of 48.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="email-body" align="center" style="padding:0 36px 30px;">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                           <tr>
                             <td align="center" style="background:#262C9E;">
-                              <a href="${INSTAGRAM_URL}" target="_blank" style="display:inline-block;padding:15px 26px;color:#FFFFFF;font-size:12px;font-weight:800;letter-spacing:0.9px;text-decoration:none;text-transform:uppercase;">
-                                Follow us on Instagram
+                              <a href="${GUIDE_URL}" target="_blank" style="display:inline-block;padding:16px 28px;color:#FFFFFF;font-size:12px;font-weight:800;letter-spacing:0.9px;text-decoration:none;text-transform:uppercase;">
+                                Download the Guide
                               </a>
                             </td>
                           </tr>
                         </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="email-body" style="padding:0 36px 30px;">
+                        <p style="margin:0 0 12px;color:#2C2C2C;font-size:15px;line-height:1.7;">
+                          If you have questions about brand strategy, product development, production, supply chain or launching your fashion brand, simply reply to this email.
+                        </p>
+                        <p style="margin:0 0 18px;color:#2C2C2C;font-size:15px;line-height:1.7;">
+                          We also offer one-to-one consultations for founders who would like tailored guidance on the next steps for their business.
+                        </p>
+                        <p style="margin:0;color:#111114;font-size:14px;line-height:1.8;">
+                          <a href="${WEBSITE_URL}" target="_blank" style="color:#262C9E;text-decoration:underline;">Learn more</a>
+                          &nbsp;&nbsp;·&nbsp;&nbsp;
+                          <a href="${INSTAGRAM_URL}" target="_blank" style="color:#262C9E;text-decoration:underline;">Instagram</a>
+                        </p>
+                        <p style="margin:22px 0 0;color:#111114;font-size:14px;line-height:1.65;">
+                          Best regards,<br>
+                          <strong>Evgeniya Khorosheva</strong><br>
+                          Co-Founder &amp; Brand Strategist<br>
+                          Creative Sample Studio · London
+                        </p>
                       </td>
                     </tr>
                     <tr>
@@ -232,7 +285,7 @@ async function sendBrevoPreRegistration(env, lead) {
   if (!response.ok) {
     const errorBody = await response.text();
     console.error("Brevo email response", response.status, errorBody);
-    throw new Error("Pre-registration confirmation email failed");
+    throw new Error("Guide email failed");
   }
 }
 
@@ -296,9 +349,9 @@ export async function onRequestPost(context) {
     ]);
 
     try {
-      await sendBrevoPreRegistration(env, lead);
+      await sendBrevoGuideEmail(env, lead);
     } catch (error) {
-      console.error("Pre-registration confirmation email error", error);
+      console.error("Guide email error", error);
     }
 
     return json({ ok: true });
