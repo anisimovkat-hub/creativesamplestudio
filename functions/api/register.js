@@ -47,7 +47,7 @@ async function saveToGoogleSheet(env, lead) {
       action: "upsert_registration",
       ...lead,
       registered_at: new Date().toISOString(),
-      webinar_date: "TBA",
+      webinar_date: "2026-09-24 18:00 America/New_York",
       registration_status: "Pre-registered",
       zoom_registrant_id: "",
       zoom_join_url: "",
@@ -98,7 +98,7 @@ async function sendBrevoGuideEmail(env, lead) {
     "",
     "As promised, we’re sharing the CSS Launch Framework™ Guide & Brand Readiness Self-Assessment with you.",
     "",
-    "The webinar date and time are still being confirmed. We’ll email you the details and Zoom access as soon as they are available.",
+    "The webinar will take place on 24 September 2026 at 18:00 New York time. We’ll email the Zoom access details separately.",
     "",
     `Download the guide: ${GUIDE_URL}`,
     "",
@@ -156,7 +156,7 @@ async function sendBrevoGuideEmail(env, lead) {
                           As promised, we’re sharing the <strong>CSS Launch Framework™ Guide &amp; Brand Readiness Self-Assessment</strong> with you.
                         </p>
                         <p style="margin:0 0 18px;">
-                          The date and time are still being confirmed. We’ll email you the details and Zoom access as soon as they are available.
+                          The webinar will take place on 24 September 2026 at 18:00 New York time. We’ll email the Zoom access details separately.
                         </p>
                         <p style="margin:0 0 18px;">
                           <a href="${GUIDE_URL}" target="_blank" style="color:#262C9E;text-decoration:underline;"><strong>Download the guide</strong></a>
