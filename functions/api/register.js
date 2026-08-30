@@ -239,6 +239,9 @@ export async function onRequestPost(context) {
   if (lead.name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
     return json({ error: "Please enter a valid name and email address." }, 400);
   }
+  if (lead.position.length < 2) {
+    return json({ error: "Please enter your position." }, 400);
+  }
 
   try {
     await Promise.all([
