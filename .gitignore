@@ -1,9 +1,0 @@
-.DS_Store
-*.log
-.env
-.env.*
-public/webinar/config.local.js
-output/
-work/
-.wrangler/
-.dev.vars
