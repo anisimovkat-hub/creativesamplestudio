@@ -28,20 +28,24 @@ Never add API keys, passwords, Cloudflare tokens, Google credentials, lead lists
 
 ## Project skills
 
-Before making a landing page, use these project skills:
+Use these project skills for landing work:
 
-1. `/css-brand` — visual identity, typography, voice, and brand constraints.
-2. `/create-css-landing` — implementation workflow for a new page.
-3. `/review-css-landing` — pre-PR quality and privacy review.
+1. `/find-css-materials` — locate the correct references and approved source files.
+2. `/css-brand` — apply visual identity, typography, voice, and brand constraints.
+3. `/prepare-css-assets` — prepare selected images, video, and downloads for production.
+4. `/create-css-landing` — implement a new page safely.
+5. `/review-css-landing` — run pre-PR design, privacy, and production QA.
 
-Project skills live in `.claude/skills/` and travel with the repository.
+Project skills live in `.claude/skills/` and travel with the repository. Private Drive links do not belong in this public repository; use the separate material map shared with the SMM.
 
 ## Content and design rules
 
 - Default public language is English unless the brief says otherwise.
 - Keep the CSS voice clear, expert, calm, and specific. Avoid hype, inflated claims, and generic AI copy.
-- Reuse assets already stored in the repository when possible.
-- Do not hotlink random images or add licensed fonts/assets without approval.
+- Reuse approved assets already stored in the repository when possible.
+- Do not hotlink Drive files or random images.
+- Do not add licensed fonts/assets without approval.
+- There is no approved standalone logo file in the repository. Use the existing typographic wordmark or request an approved file.
 - Never invent dates, prices, guarantees, speakers, testimonials, results, or legal consent.
 - If event timing is not approved, write “Date to be confirmed” rather than guessing.
 - A phone field does not imply consent to WhatsApp. Add a separate, explicit consent if WhatsApp contact is required.
@@ -63,4 +67,5 @@ Project skills live in `.claude/skills/` and travel with the repository.
 - Confirm the final URL slug and page title.
 - Confirm no secrets, personal data, debug output, or internal notes are present.
 - Confirm the consent copy matches the channels actually used.
+- Confirm production assets load without private Drive access.
 - Summarize changed files and include desktop/mobile screenshots in the pull request when possible.
